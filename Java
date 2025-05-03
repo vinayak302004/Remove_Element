@@ -1,0 +1,53 @@
+# Java
+
+1. Brute-Force Approach :
+
+class Solution 
+{
+    public int removeElement(int[] nums, int val) 
+    {
+        int n=nums.length,i,count=0;
+        for(i=0;i<n;i++)
+        {
+            if(nums[i]!=val)
+            {
+                nums[count]=nums[i];
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+2. Optimal Approach (Two Pointer) :
+
+class Solution 
+{
+    public int removeElement(int[] nums, int val) 
+    {
+        int s=0,n=nums.length,e=n-1,temp;
+        while(s<=e)
+        {
+            if(nums[e]==val)
+            {
+                e--;
+            }
+            else
+            {
+                if(nums[s]==val)
+                {
+                    temp=nums[e];
+                    nums[e]=nums[s];
+                    nums[s]=temp;
+                    s++;
+                    e--;
+                }
+                else
+                {
+                    s++;
+                }
+            }
+        }
+        return e+1;
+    }
+}
