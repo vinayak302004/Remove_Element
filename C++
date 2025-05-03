@@ -1,0 +1,47 @@
+# C++
+
+1. Brute-Force Approach :
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int count = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] != val) {
+                nums[count] = nums[i];
+                ++count;
+            }
+        }
+        return count;
+    }
+};
+
+2. Optimal Approach (Two Pointer Approach) :
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int s = 0;
+        int n = nums.size();
+        int e = n - 1;
+        int temp;
+
+        while (s <= e) {
+            if (nums[e] == val) {
+                e--;
+            } else {
+                if (nums[s] == val) {
+                    // Swap nums[s] and nums[e]
+                    temp = nums[e];
+                    nums[e] = nums[s];
+                    nums[s] = temp;
+                    s++;
+                    e--;
+                } else {
+                    s++;
+                }
+            }
+        }
+        return e + 1;
+    }
+};
